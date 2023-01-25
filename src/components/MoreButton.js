@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from 'react';
+import { SushiContext, ACTIONS } from './sushiStore';
 
-function MoreButton(props) {
-  return <button onClick={/* Fill me in! */ null}>More sushi!</button>;
+function MoreButton() {
+  const { dispatch } = useContext(SushiContext);
+
+  function clickHandler() {
+    dispatch({ type: ACTIONS.MORE });
+  }
+
+  return <button onClick={clickHandler}>More sushi!</button>;
 }
 
 export default MoreButton;

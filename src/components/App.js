@@ -1,15 +1,18 @@
-import React from "react";
-import SushiContainer from "./SushiContainer";
-import Table from "./Table";
-
-const API = "http://localhost:3001/sushis";
+import React from 'react';
+import SushiContainer from './SushiContainer';
+import Table from './Table';
+import { SushiProvider } from './sushiStore';
+import SushiWallet from './SushiWallet';
 
 function App() {
   return (
-    <div className="app">
-      <SushiContainer />
-      <Table />
-    </div>
+    <SushiProvider>
+      <div className="app">
+        <SushiWallet />
+        <SushiContainer />
+        <Table />
+      </div>
+    </SushiProvider>
   );
 }
 

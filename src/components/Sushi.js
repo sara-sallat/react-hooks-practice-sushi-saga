@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useContext } from 'react';
+import { SushiContext, ACTIONS } from './sushiStore';
 
-function Sushi(props) {
+function Sushi({ sushi }) {
+  const { state, dispatch } = useContext(SushiContext);
+
+  function handleEat() {
+    dispatch({ type: ACTIONS.EAT, payload: sushi });
+  }
+
+  const eaten = state.eatenSushis.some((s) => s.id === sushi.id);
+
   return (
     <div className="sushi">
-      <div className="plate" onClick={/* Give me a callback! */ null}>
-        {/* Tell me if this sushi has been eaten! */}
-        {false ? null : (
-          <img
-            src={/* Give me an image source! */ null}
-            alt={/* Give me a name! */ "Sushi"}
-            width="100%"
-          />
+      <div className="plate" onClick={handleEat}>
+        {eaten ? null : (
+          <img src={sushi.img_url} alt={sushi.name} width="100%" />
         )}
       </div>
       <h4 className="sushi-details">
-        {/* Give me a name! */} - ${/* Give me a price! */}
+        {sushi.name} - ${sushi.price}
       </h4>
     </div>
   );
